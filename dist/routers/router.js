@@ -24,8 +24,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const responseGemini_1 = require("../controller/responseGemini");
+const responseMp_1 = require("../controller/responseMp");
 const every = __importStar(require("../controller/responseGpt"));
 const router = (0, express_1.Router)();
-router.post('/recursos', every.responseGpt);
+router.post('/open', every.responseGpt);
+router.post('/gemine', responseGemini_1.responseGemine);
+router.post('/mercadopago', responseMp_1.responseMp);
 router.get('/', every.teste);
 exports.default = router;
