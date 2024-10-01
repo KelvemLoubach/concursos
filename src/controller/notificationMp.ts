@@ -1,30 +1,16 @@
 import { Request, Response } from "express"
+import { json } from "stream/consumers";
 
-
-const responseNotificationMp = (req: Request, res: Response) => {
+const responseNotificationMp = async (req: Request, res: Response):Promise<any> => {
     try {
-        const dadosResponse = req.body;
+        const dadosResponse = req.body as string;
 
-
-        console.log(`Resposta notificação mp ${dadosResponse}`)
-
-
+        return res.status(200).json({ dadosResponse })
 
     } catch (error) {
 
-
-        console.log(error)
-
-
-
-
+        return res.status(400).json({ error })
     }
-
-
-
-
-
-
 }
 
 export default responseNotificationMp;

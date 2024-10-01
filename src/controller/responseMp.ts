@@ -53,7 +53,7 @@ export const responseMp = async (req: Request, res: Response): Promise<any> => {
             binary_mode: true,
             external_reference: '1643827245',
             marketplace: 'marketplace',
-            notification_url: 'http://localhost:3030/nitificationMp',
+            notification_url: 'https://concursos.onrender.com/notificationMp',
             operation_type: 'regular_payment',
             payment_methods: {
                 default_payment_method_id: 'master',

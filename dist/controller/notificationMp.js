@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const responseNotificationMp = (req, res) => {
+const responseNotificationMp = async (req, res) => {
     try {
         const dadosResponse = req.body;
-        console.log(`Resposta notificação mp ${dadosResponse}`);
+        return res.status(200).json({ dadosResponse });
     }
     catch (error) {
-        console.log(error);
+        return res.status(400).json({ error });
     }
 };
 exports.default = responseNotificationMp;
