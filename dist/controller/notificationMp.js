@@ -2,11 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const responseNotificationMp = async (req, res) => {
     try {
-        const { id, type } = req.params;
-        ;
-        console.log(id);
+        const dados = req.body;
+        console.log(dados);
         console.log('******************************************');
-        console.dir(type);
+        console.dir(dados);
         console.log('******************************************');
     }
     catch (error) {

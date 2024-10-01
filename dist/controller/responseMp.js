@@ -16,7 +16,7 @@ const responseMp = async (req, res) => {
                     category_id: 'car_electronics',
                     quantity: 1,
                     currency_id: 'BRL',
-                    unit_price: 20,
+                    unit_price: 1,
                 },
             ],
             marketplace_fee: 0,
