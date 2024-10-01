@@ -1,11 +1,13 @@
-import  {  MercadoPagoConfig ,  Payment  }  from  'mercadopago' ;
+import { MercadoPagoConfig, Payment, Preference } from 'mercadopago';
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const  client  =  new  MercadoPagoConfig ( {  accessToken : process.env.API_KEY_MP as string ,  options : {  timeout : 5000 ,  idempotencyKey : 'abc'  }  } ) ;
+const client = new MercadoPagoConfig({ accessToken: process.env.API_KEY_MP as string, options: { timeout: 5000, idempotencyKey: 'kljgliugliugliglikjhgbliftlç' } });
 
-export const  payment  =  new  Payment ( client ) ;
+
+const payment = new Payment(client);
+export const preference = new Preference(client);
 
 
 
