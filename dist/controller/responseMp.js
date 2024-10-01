@@ -34,7 +34,7 @@ const responseMp = async (req, res) => {
                 },
             },
             back_urls: {
-                success: 'http://test.com/success',
+                success: 'https://concursos.onrender.com/notificationMp',
                 failure: 'http://test.com/failure',
                 pending: 'http://test.com/pending',
             },

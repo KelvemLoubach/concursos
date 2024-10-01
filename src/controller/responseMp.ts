@@ -40,7 +40,7 @@ export const responseMp = async (req: Request, res: Response): Promise<any> => {
                 },
             },
             back_urls: {
-                success: 'http://test.com/success',
+                success: 'https://concursos.onrender.com/notificationMp',
                 failure: 'http://test.com/failure',
                 pending: 'http://test.com/pending',
             },

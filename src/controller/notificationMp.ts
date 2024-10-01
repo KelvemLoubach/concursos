@@ -3,13 +3,13 @@ import { json } from "stream/consumers";
 
 const responseNotificationMp = async (req: Request, res: Response):Promise<any> => {
     try {
-        const dadosResponse = req.params;
+         const { id, type } = req.body;;
 
-         console.log(JSON.stringify(dadosResponse, null, 2)); 
+         console.log(id); 
          console.log('******************************************')
-         console.dir(dadosResponse, { depth: null });
+         console.dir(type);
          console.log('******************************************')
-         console.log(dadosResponse);
+       
 
 
 
