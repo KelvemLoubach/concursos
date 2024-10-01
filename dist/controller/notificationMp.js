@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const responseNotificationMp = async (req, res) => {
     try {
-        const dadosResponse = req.body;
+        const dadosResponse = req.params;
         console.log(JSON.stringify(dadosResponse, null, 2));
         console.log('******************************************');
         console.dir(dadosResponse, { depth: null });

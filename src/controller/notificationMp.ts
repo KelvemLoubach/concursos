@@ -3,7 +3,7 @@ import { json } from "stream/consumers";
 
 const responseNotificationMp = async (req: Request, res: Response):Promise<any> => {
     try {
-        const dadosResponse = req.body;
+        const dadosResponse = req.params;
 
          console.log(JSON.stringify(dadosResponse, null, 2)); 
          console.log('******************************************')

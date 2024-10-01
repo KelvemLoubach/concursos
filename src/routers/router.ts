@@ -13,6 +13,7 @@ router.post('/gemine', responseGemine);
 router.post('/mercadopago', responseMp);
 router.post('/notificationMp',notificationMp )
 
+
 router.get('/', every.teste)
 
 
