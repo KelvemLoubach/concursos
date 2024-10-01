@@ -15,28 +15,28 @@ export const responseMp = async (req: Request, res: Response): Promise<any> => {
         const body = {
             items: [
                 {
-                    id: '12234',
+                    id: '11234',
                     title: 'Dummy Title',
                     description: 'Dummy description',
                     picture_url: 'http://www.myapp.com/myimage.jpg',
                     category_id: 'car_electronics',
                     quantity: 1,
                     currency_id: 'BRL',
-                    unit_price: 120,
+                    unit_price: 20,
                 },
             ],
             marketplace_fee: 0,
             payer: {
-                name: 'Test',
-                surname: 'User',
-                email: 'your2_test_email@example.com',
+                name: 'Kelvem',
+                surname: 'Loubach',
+                email: 'your22_test_email@example.com',
                 phone: {
                     area_code: '11',
                     number: '4444-4444',
                 },
                 identification: {
                     type: 'CPF',
-                    number: '191191129100',
+                    number: '11191129100',
                 },
             },
             back_urls: {
@@ -75,9 +75,8 @@ export const responseMp = async (req: Request, res: Response): Promise<any> => {
         };
 
         const response = await preference.create({ body })
-            .then().catch();
-
-
+        
+        console.log(response)
         return res.status(200).json({response})
 
 
