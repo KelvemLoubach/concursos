@@ -3,7 +3,7 @@ import { json } from "stream/consumers";
 
 const responseNotificationMp = async (req: Request, res: Response):Promise<any> => {
     try {
-         const { id, type } = req.body;;
+         const { id, type } = req.params;;
 
          console.log(id); 
          console.log('******************************************')
