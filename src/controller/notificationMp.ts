@@ -5,7 +5,7 @@ const responseNotificationMp = async (req: Request, res: Response):Promise<any> 
     try {
          const dados = req.body;
 
-         console.log(dados.payment); 
+         console.log(dados.payment.id); 
          console.log('******************************************')
          console.dir(dados);
          console.log('******************************************')
