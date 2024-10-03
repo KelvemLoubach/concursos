@@ -11,6 +11,7 @@ dotenv_1.default.config();
 const server = (0, express_1.default)();
 server.use(express_1.default.urlencoded({ extended: true }));
 server.use((0, cors_1.default)());
+server.use(express_1.default.json());
 server.use(router_1.default);
 server.listen(process.env.PORT);
 console.log(`Rodando na porta: ${process.env.PORT}`);

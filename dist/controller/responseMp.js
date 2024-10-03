@@ -23,7 +23,7 @@ const responseMp = async (req, res) => {
             payer: {
                 name: 'Kelvem',
                 surname: 'Loubach',
-                email: 'your22_test_email@example.com',
+                email: 'your522_test_email@example.com',
                 phone: {
                     area_code: '11',
                     number: '4444-4444',
@@ -47,7 +47,7 @@ const responseMp = async (req, res) => {
             binary_mode: true,
             external_reference: '1643827245',
             marketplace: 'marketplace',
-            notification_url: 'https://concursos.onrender.com/notificationMp',
+            notification_url: 'https://af84-186-192-8-141.ngrok-free.app/notificationMp',
             operation_type: 'regular_payment',
             payment_methods: {
                 default_payment_method_id: 'master',

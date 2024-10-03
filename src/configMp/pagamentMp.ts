@@ -6,8 +6,8 @@ dotenv.config();
 const client = new MercadoPagoConfig({ accessToken: process.env.API_KEY_MP as string, options: { timeout: 5000, idempotencyKey: 'kljgliugliugliglikjhgbliftlç' } });
 
 
-const payment = new Payment(client);
-export const preference = new Preference(client);
+ const payment = new Payment(client);
+ const preference = new Preference(client);
 
-
+export { payment, preference} ;
 
