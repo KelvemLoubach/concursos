@@ -47,7 +47,7 @@ const responseMp = async (req, res) => {
             binary_mode: true,
             external_reference: '1643827245',
             marketplace: 'marketplace',
-            notification_url: 'https://af84-186-192-8-141.ngrok-free.app/notificationMp',
+            notification_url: 'https://48b9-186-192-8-140.ngrok-free.app/notificationMp',
             operation_type: 'regular_payment',
             payment_methods: {
                 default_payment_method_id: 'master',
@@ -67,7 +67,6 @@ const responseMp = async (req, res) => {
             statement_descriptor: 'Test Store',
         };
         const response = await pagamentMp_1.preference.create({ body });
-        console.log(response);
         return res.status(200).json({ response });
     }
     catch (error) {

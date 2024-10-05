@@ -10,8 +10,6 @@ export const responseMp = async (req: Request, res: Response): Promise<any> => {
         const dados = req.body
         const transactionAmount = parseFloat(dados.transaction_amount);
 
-
-
         const body = {
             items: [
                 {
@@ -53,7 +51,7 @@ export const responseMp = async (req: Request, res: Response): Promise<any> => {
             binary_mode: true,
             external_reference: '1643827245',
             marketplace: 'marketplace',
-            notification_url: 'https://af84-186-192-8-141.ngrok-free.app/notificationMp',
+            notification_url: 'https://48b9-186-192-8-140.ngrok-free.app/notificationMp',
             operation_type: 'regular_payment',
             payment_methods: {
                 default_payment_method_id: 'master',
@@ -76,9 +74,7 @@ export const responseMp = async (req: Request, res: Response): Promise<any> => {
 
         const response = await preference.create({ body })
         
-        console.log(response)
         return res.status(200).json({response})
-
 
     } catch (error) {
 
