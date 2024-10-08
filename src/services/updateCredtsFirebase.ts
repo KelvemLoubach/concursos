@@ -1,4 +1,4 @@
-import {firestoredataBase} from "../configFirebase/configFirestore";
+import {firestoredataBase} from "../config/configFirebase/configFirestore";
 import { FieldValue } from 'firebase-admin/firestore';
 
 

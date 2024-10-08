@@ -1,5 +1,5 @@
 import adminfirebase from "firebase-admin"
-const serviceAccount = require('../../recurso.json');
+const serviceAccount = require('../../../recurso.json');
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -11,5 +11,6 @@ adminfirebase.initializeApp({
   });
 
   const firestoredataBase = adminfirebase.firestore(); 
+  const authFirebase = adminfirebase.auth();
 
-  export { firestoredataBase };
+  export { firestoredataBase,authFirebase };

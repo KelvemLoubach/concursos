@@ -28,8 +28,6 @@ const compareSha256 = async (xSignature:any,dataID:any, xRequestId:any) => {
             }
         });
 
-      
-
   
         const secret = process.env.SECRET_KEY_MP as string; 
 

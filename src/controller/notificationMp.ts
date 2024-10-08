@@ -1,35 +1,39 @@
 import { Request, Response } from "express";
-import handlePayment from "../services/getPaymentAprov"
 import sha256 from "../services/sha256Mp";
 
 
 const responseNotificationMp = async (req: Request, res: Response): Promise<any> => {
   try {
     const headers = req.headers;
-    const data = req.query;
-    const topic = data.topic;
-    const xSignature = headers['x-signature'];
-    const xRequestId = headers['x-request-id'];
+    const data = req.body;
 
-    sha256(xSignature,data.id,xRequestId)
 
-    console.log(`${xSignature} aqui assinatura`);
-    console.log(`${xRequestId} aqui id`);
+    // const topic = data.topic;
 
-    console.log(`aqui query`, JSON.stringify(data, null, 2));
 
-    if (topic === 'payment') {
+    // const xSignature = headers['x-signature'];
+    // const xRequestId = headers['x-request-id'];
 
-      const paymentId = data.id;
-      await handlePayment(paymentId);
+    //sha256(xSignature,data.id,xRequestId)
+
+    // console.log(`${xSignature} aqui assinatura`);
+    // console.log(`${xRequestId} aqui id`);
+
+
+    // if (topic === 'payment') {
+
+    //   const paymentId = data.id;
+    //   await handlePayment(paymentId);
     
      
-      console.log(`Aqui paymentId ${paymentId}`)
+    //   console.log(`Aqui paymentId ${paymentId}`)
 
-    } else if (topic === 'merchant_order') {
-      const orderId = data.id;
-      console.log(`Aqui order id ${orderId}`)
-    }
+    // } else if (topic === 'merchant_order') {
+    //   const orderId = data.id;
+    //   console.log(`Aqui order id ${orderId}`)
+    // }
+
+
     res.sendStatus(200);
 
   } catch (error) {

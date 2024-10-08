@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.responseMp = void 0;
-const pagamentMp_1 = require("../configMp/pagamentMp");
+const pagamentMp_1 = require("../config/configMp/pagamentMp");
 const responseMp = async (req, res) => {
     try {
         const dados = req.body;

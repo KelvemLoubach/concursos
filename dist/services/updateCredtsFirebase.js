@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const configFirestore_1 = require("../configFirebase/configFirestore");
+const configFirestore_1 = require("../config/configFirebase/configFirestore");
 const firestore_1 = require("firebase-admin/firestore");
 const updatCredtByEmailUser = async (email, newCredits) => {
     try {

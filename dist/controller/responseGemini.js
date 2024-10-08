@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.responseGemine = void 0;
-const gemini_1 = __importDefault(require("../configGemini/gemini"));
+const gemini_1 = __importDefault(require("../config/configGemini/gemini"));
 const responseGemine = async (req, res) => {
     const dados = req.body;
     try {
@@ -32,7 +32,7 @@ Responda como um professore que está se dirigindo diretamente para a banca exam
     }
     catch (error) {
         console.error("Erro em controller: " + error);
-        return res.status(500).send("Erro ao processar a solicitação.");
+        return res.status(500).json({ "Eroo ao processar a solicitação": error });
     }
 };
 exports.responseGemine = responseGemine;

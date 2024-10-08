@@ -3,13 +3,11 @@ import  router  from './routers/router';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
-
 dotenv.config();
 
 const server = express();
 
 server.use(express.urlencoded({ extended: true }));
-
 
 server.use(cors());
 server.use(express.json());

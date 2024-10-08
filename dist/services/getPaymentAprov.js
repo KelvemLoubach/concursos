@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const updateCredtsFirebase_1 = __importDefault(require("../services/updateCredtsFirebase"));
-const pagamentMp_1 = require("../configMp/pagamentMp");
+const pagamentMp_1 = require("../config/configMp/pagamentMp");
 const handlePayment = async (paymentId) => {
     try {
         const paymentData = await pagamentMp_1.payment.get({ id: paymentId });

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import dadosFront from "../interfaces/dadosFront"
-import model from "../configGemini/gemini";
+import model from "../config/configGemini/gemini";
 
 export const responseGemine = async (req: Request, res: Response): Promise<any> => {
 
@@ -35,6 +35,6 @@ Responda como um professore que está se dirigindo diretamente para a banca exam
     } catch (error) {
 
         console.error("Erro em controller: " + error);
-        return res.status(500).send("Erro ao processar a solicitação.");
+        return res.status(500).json({"Eroo ao processar a solicitação":error});
     }
 };

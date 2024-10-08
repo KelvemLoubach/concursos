@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const configFirestore_1 = require("../configFirebase/configFirestore");
+const configFirestore_1 = require("../config/configFirebase/configFirestore");
 const authMiddleware = async (req, res, next) => {
     try {
         const { email } = req.body;

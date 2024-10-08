@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { firestoredataBase } from "../configFirebase/configFirestore";
+import { firestoredataBase } from "../config/configFirebase/configFirestore";
 
 const authMiddleware = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
     try {
