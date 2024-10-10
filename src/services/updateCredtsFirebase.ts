@@ -18,16 +18,17 @@ const updatCredtByEmailUser = async (email: string, newCredits: number) => {
     userByEmail.forEach(async (doc) => {
    
         await firestoredataBase.collection('users').doc(doc.id).update({
-          credits: FieldValue.increment(newCredits)
+          creditQuestion: FieldValue.increment(newCredits)
         });
         console.log(`Créditos atualizados para o usuário com o e-mail: ${email}`);
         console.log(`Usuário encontrado: ${doc.id} =>`, doc.data());
       });
 
-
+      return;
   } catch (error) {
     console.error('Erro ao buscar o usuário:', error);
   }
+  
 };
 
 

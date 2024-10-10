@@ -1,43 +1,23 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
+import {dataAppmaxx} from '..//interfaces/dataForAppmaxx'
 
-const appmaxAccessTokenT = '75463A5D-84B8A987-D021CED5-9E03A070' as string;
-const tokenProducao = 'F216A0B6-AD88AA9A-8DD217A6-8CE7B695' as string;
+dotenv.config();
 
-export const creatClientId = async () =>{
+const tokenProducao = process.env.APPMAX_ACESS_TOKEN_PRODUCAO as string;
+
+export const creatClientId = async (dataClient:dataAppmaxx) =>{
 
   try {
 
     const response = await axios.post('https://admin.appmax.com.br/api/v3/customer', {
 
       "access-token":tokenProducao,
-      "firstname":"teste",
-      "lastname":"teste",
-      "email":"teste@teste.com",
-      "telephone":"(11) 11111-1111",
-      "postcode":"01010-000",
-      "address_street":"Rua São Bento",
-      "address_street_number":"111",
-      "address_street_complement":"Bloco 7",
-      "address_street_district":"Centro",
-      "address_city":"São Paulo",
-      "address_state":"SP",
-      "ip":"127.0.0.1",
-      "custom_txt":"Tênis de Corrida 39", 
-      "products":[
-        {
-            "product_sku":"123456", 
-            "product_qty":2
-        }
-      ],
-      "tracking":
-      { 
-            "utm_source":"google",
-            "utm_campaign":"black-friday",
-            "utm_medium":"cpc",
-            "utm_content":"tenis-corrida",
-            "utm_term":"logo-link"
-      }
-  
+      "firstname":dataClient.firstname,
+      "lastname":dataClient.lastname,
+      "email":dataClient.email,
+      "telephone":dataClient.telephone,
+      
   });
 
   console.log( 'tipo id cliente na requisição ' + typeof response.data.data.id)
@@ -46,54 +26,45 @@ export const creatClientId = async () =>{
 
   } catch (error) {
 
-    console.log('Erro aqui' +error)
+  
     return error;
     
   }
 
 }
 
-
-export const createOrderId = async (clientId:number) =>{
+export const createOrderId = async (clientId:number,total:number,qty:number ) =>{
 
 try {
 
 const response = await axios.post('https://admin.appmax.com.br/api/v3/order', {
 
   "access-token":tokenProducao,
-     "total":1.0,
+     "total":total,
      "products": [
        {
            "sku":"123123",
            "name":"My product 1",
-           "qty":1
+           "qty":qty
        }
      ],
      "customer_id":clientId,
-     "discount":0,
-     "freight_type":"PAC"
 });
 
 console.log('Order id' + response.data.data.id)
 console.log('Order id tipo ' + typeof response.data.data.id)
 return response.data.data.id;
-
-
   
 } catch (error) {
 
-console.log(`Erro em criar a ordem `)
+
 return error;
-
-
-
   
 }
-
 }
 
 
-export const creatPayment = async (clienteId:number, orderId:number) =>{
+export const creatPayment = async (clienteId:number, orderId:number,document_number:string, expiration_data:string) =>{
 
 
 try {
@@ -113,28 +84,22 @@ const response = await axios.post('https://admin.appmax.com.br/api/v3/payment/pi
   {
         "pix":
         {
-              "document_number":"14271239771",
-              "expiration_date":"2024-10-11 12:00:00",
+              "document_number":document_number,
+              "expiration_date":expiration_data,
         }
   }
 
+});
 
-})
+return response.data;
 
-console.log(response)
 
-  
 } catch (error) {
-
 
 console.log(`Erros em criar pagamento ${error}`)
 return error;
-
   
 }
-
-
-
 
 
 }

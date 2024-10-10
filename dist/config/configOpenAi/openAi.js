@@ -8,6 +8,5 @@ const openai_1 = __importDefault(require("openai"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 exports.openai = new openai_1.default({
-    apiKey: process.env.OPENAI_API_KEY,
-    organization: process.env.ID_ORG,
+    apiKey: process.env.OPENAI_API_KEY
 });
