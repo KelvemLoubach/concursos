@@ -96,7 +96,7 @@ return response.data;
 
 } catch (error) {
 
-console.log(`Erros em criar pagamento ${error}`)
+console.log(`Erros em criar pagamento ${error?.data}`)
 return error;
   
 }
