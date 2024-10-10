@@ -5,19 +5,17 @@ import { dataAppmaxx,PaymentData } from "../interfaces/dataForAppmaxx";
 const gatwayAppmaxx = async (req:Request, res:Response):Promise< string | any> => {
 
   const dataClient = req.body;
-console.log('******************' + dataClient.firstname)
-  console.log('******************' + dataClient.lastname)
-  console.log('******************' + dataClient.qty)
-  console.log('******************' + dataClient.total)
-console.log('******************' + dataClient.document_number)
-  console.log('******************' + dataClient.expiration_date)
+
     try {
 
       const clientId = await creatClientId(dataClient);
+      console.log('******************' + clientId)
       const orderId = await createOrderId(clientId,dataClient.total,dataClient.qty);
+      console.log('******************' + orderId)
       const paymentDataOrerror = await creatPayment(clientId,orderId,dataClient.documente_number,dataClient.expiration_data);
+      console.log('******************' + paymentDataOrerror.data)
 
-      console.log(paymentDataOrerror)
+      console.log(paymentDataOrerror.data.data)
 
       if(paymentDataOrerror.success !== 'ATIVA' && paymentDataOrerror.status !== 200 ){
         return res.status(400).json(paymentDataOrerror)
