@@ -4,8 +4,8 @@ import { dataAppmaxx,PaymentData } from "../interfaces/dataForAppmaxx";
 
 const gatwayAppmaxx = async (req:Request, res:Response):Promise< string | any> => {
 
-  const dataClient = req.body as dataAppmaxx;
-
+  const dataClient = req.body;
+console.log('******************' + dataClient)
     try {
 
       const clientId = await creatClientId(dataClient);
