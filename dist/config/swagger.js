@@ -13,8 +13,7 @@ const swaggerOptions = {
             description: 'Documentação da API utilizando Swagger',
             contact: {
                 name: 'Kelvem',
-                url: 'https://seusite.com',
-                email: 'seuemail@dominio.com',
+                url: 'https://concursos.onrender.com/',
             },
         },
         servers: [
