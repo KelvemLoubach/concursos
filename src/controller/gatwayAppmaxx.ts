@@ -15,13 +15,13 @@ const gatwayAppmaxx = async (req:Request, res:Response):Promise< string | any> =
       const paymentDataOrerror = await creatPayment(clientId,orderId,dataClient.documente_number,dataClient.expiration_data);
       console.log('******************' + paymentDataOrerror)
 
-      console.log(paymentDataOrerror.data.data)
+      console.log(paymentDataOrerror)
 
       if(paymentDataOrerror.success !== 'ATIVA' && paymentDataOrerror.status !== 200 ){
         return res.status(400).json(paymentDataOrerror)
       }
   
-      return res.status(200).json({"Paymente data":paymentDataOrerror.data.data}) ;
+      return res.status(200).json({"Paymente data":paymentDataOrerror}) ;
 
     } catch (error) {
 
