@@ -5,7 +5,12 @@ import { dataAppmaxx,PaymentData } from "../interfaces/dataForAppmaxx";
 const gatwayAppmaxx = async (req:Request, res:Response):Promise< string | any> => {
 
   const dataClient = req.body;
-console.log('******************' + dataClient)
+console.log('******************' + dataClient.firstname)
+  console.log('******************' + dataClient.lastname)
+  console.log('******************' + dataClient.email)
+  console.log('******************' + dataClient.telephone)
+console.log('******************' + dataClient.document_number)
+  console.log('******************' + dataClient.expiration_date)
     try {
 
       const clientId = await creatClientId(dataClient);
