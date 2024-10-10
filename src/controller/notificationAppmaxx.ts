@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import  updatCredtByEmailUser from "../services/updateCredtsFirebase"
 
-const responseNotificationMp = async (req: Request, res: Response): Promise<any> => {
+const responseNotificationMp = async (req: Request, res: Response): Promise<string | any> => {
   try {
   
     const paymentInf = req.body;

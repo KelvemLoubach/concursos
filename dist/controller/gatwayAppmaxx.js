@@ -6,9 +6,12 @@ const gatwayAppmaxx = async (req, res) => {
     try {
         const clientId = await (0, clientOrderPaymentAppmaxx_1.creatClientId)(dataClient);
         const orderId = await (0, clientOrderPaymentAppmaxx_1.createOrderId)(clientId, dataClient.total, dataClient.qty);
-        const paymentData = await (0, clientOrderPaymentAppmaxx_1.creatPayment)(clientId, orderId, dataClient.documente_number, dataClient.expiration_data);
-        console.log(paymentData);
-        return res.status(200).json({ "Paymente data": paymentData });
+        const paymentDataOrerror = await (0, clientOrderPaymentAppmaxx_1.creatPayment)(clientId, orderId, dataClient.documente_number, dataClient.expiration_data);
+        console.log(paymentDataOrerror);
+        if (paymentDataOrerror.success !== 'ATIVA' && paymentDataOrerror.status !== 200) {
+            return res.status(400).json(paymentDataOrerror);
+        }
+        return res.status(200).json({ "Paymente data": paymentDataOrerror });
     }
     catch (error) {
         console.error('Erro ao criar cliente:', error);

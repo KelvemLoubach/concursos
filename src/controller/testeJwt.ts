@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 
-const testeJwt = async (req:Request, res:Response): Promise<any> =>{
+const testeJwt = async (req:Request, res:Response): Promise<string | any> =>{
 
     const user = req.user;
 

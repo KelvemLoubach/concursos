@@ -45,7 +45,7 @@ router.post('/appmaxx', gatwayAppmaxx_1.default);
  *               telephone:
  *                 type: string
  *                 description: Número de telefone do cliente.
- *                 example: "(11) 11111-1111"
+ *                 example: "11111111111"
  *               total:
  *                 type: number
  *                 description: Valor total do pedido.
@@ -62,10 +62,6 @@ router.post('/appmaxx', gatwayAppmaxx_1.default);
  *                 type: number
  *                 description: Quantidade do produto.
  *                 example: 2
- *               customer_id:
- *                 type: number
- *                 description: ID do cliente.
- *                 example: 123456
  *               document_number:
  *                 type: string
  *                 description: Número do documento do cliente.

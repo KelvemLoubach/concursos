@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import dadosFront from "../interfaces/dadosFront"
 import model from "../config/configGemini/gemini";
 
-export const responseGemine = async (req: Request, res: Response): Promise<any> => {
+export const responseGemine = async (req: Request, res: Response): Promise<string | any> => {
 
     const dados = req.body as dadosFront;
 

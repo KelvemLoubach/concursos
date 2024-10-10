@@ -1,7 +1,7 @@
 import { openai } from "../config/configOpenAi/openAi";
 import { Request, Response } from "express";
 
-export const responseGpt = async (req: Request, res: Response): Promise<any> => {
+export const responseGpt = async (req: Request, res: Response): Promise<string | any> => {
 
     try {
 
