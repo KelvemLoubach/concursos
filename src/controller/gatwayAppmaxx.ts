@@ -13,7 +13,7 @@ const gatwayAppmaxx = async (req:Request, res:Response):Promise< string | any> =
       const orderId = await createOrderId(clientId,dataClient.total,dataClient.qty);
       console.log('******************' + orderId)
       const paymentDataOrerror = await creatPayment(clientId,orderId,dataClient.documente_number,dataClient.expiration_data);
-      console.log('******************' + paymentDataOrerror.data)
+      console.log('******************' + paymentDataOrerror)
 
       console.log(paymentDataOrerror.data.data)
 
