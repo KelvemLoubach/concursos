@@ -23,7 +23,7 @@ console.log('******************' + dataClient.document_number)
         return res.status(400).json(paymentDataOrerror)
       }
   
-      return res.status(200).json({"Paymente data":paymentDataOrerror}) ;
+      return res.status(200).json({"Paymente data":paymentDataOrerror.data.data}) ;
 
     } catch (error) {
 
