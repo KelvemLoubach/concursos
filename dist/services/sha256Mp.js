@@ -8,32 +8,32 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const compareSha256 = async (xSignature, dataID, xRequestId) => {
     try {
-        const parts = xSignature.split(',');
+        const parts = xSignature.split(",");
         let ts;
         let hash;
         parts.forEach((part) => {
-            const [key, value] = part.split('=');
+            const [key, value] = part.split("=");
             if (key && value) {
                 const trimmedKey = key.trim();
                 const trimmedValue = value.trim();
-                if (trimmedKey === 'ts') {
+                if (trimmedKey === "ts") {
                     ts = trimmedValue;
                 }
-                else if (trimmedKey === 'v1') {
+                else if (trimmedKey === "v1") {
                     hash = trimmedValue;
                 }
             }
         });
         const secret = process.env.SECRET_KEY_MP;
         const manifest = `id:${dataID};request-id:${xRequestId};ts:${ts};`;
-        const hmac = crypto_1.default.createHmac('sha256', secret);
+        const hmac = crypto_1.default.createHmac("sha256", secret);
         hmac.update(manifest);
-        const sha = hmac.digest('hex');
+        const sha = hmac.digest("hex");
         if (sha === hash) {
-            console.log('HMAC verification passed');
+            console.log("HMAC verification passed");
         }
         else {
-            console.log('HMAC verification failed');
+            console.log("HMAC verification failed");
         }
     }
     catch (error) {

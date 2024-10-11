@@ -6,15 +6,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swagger_1 = __importDefault(require("../config/swagger"));
-const responseGemini_1 = require("../controller/responseGemini");
 const authFirebaseJtw_1 = __importDefault(require("../Auth.ts/authFirebaseJtw"));
 const testeJwt_1 = __importDefault(require("../controller/testeJwt"));
 const gatwayAppmaxx_1 = __importDefault(require("../controller/gatwayAppmaxx"));
-const responseGpt_1 = require("../controller/responseGpt");
+const notificationAppmaxx_1 = __importDefault(require("../controller/notificationAppmaxx"));
+const generateResourceController_1 = require("../controller/generateResourceController");
 const router = (0, express_1.Router)();
-router.post('/gemine', responseGemini_1.responseGemine);
-router.post('/responseresource', responseGpt_1.responseGpt);
-router.post('/appmaxx', gatwayAppmaxx_1.default);
+router.post("/generate-resource", authFirebaseJtw_1.default, generateResourceController_1.generateResourceController);
+router.post("/appmaxx", gatwayAppmaxx_1.default);
+router.post("/notification", notificationAppmaxx_1.default);
 /**
  * @swagger
  * /appmaxx:
@@ -128,6 +128,6 @@ router.post('/appmaxx', gatwayAppmaxx_1.default);
  *                   description: Mensagem de erro.
  *                   example: "Erro ao processar a solicitação"
  */
-router.get('/testeJwt', authFirebaseJtw_1.default, testeJwt_1.default);
-router.use('/api-docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_1.default));
+router.get("/testeJwt", authFirebaseJtw_1.default, testeJwt_1.default);
+router.use("/api-docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_1.default));
 exports.default = router;

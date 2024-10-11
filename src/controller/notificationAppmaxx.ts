@@ -1,28 +1,53 @@
 import { Request, Response } from "express";
-import  updatCredtByEmailUser from "../services/updateCredtsFirebase"
 
-const responseNotificationMp = async (req: Request, res: Response): Promise<string | any> => {
+// Função para extrair informações de pagamento
+const extractPaymentInfo = (paymentInf: any) => {
+  const quantity = paymentInf.data.bundles[0].products[0].quantity as number;
+  const email = paymentInf.data.customer.email as string;
+  return { quantity, email };
+};
+
+// Função principal para processar a notificação
+const notificationAppMaxx = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
-  
     const paymentInf = req.body;
+    const { quantity, email } = extractPaymentInfo(paymentInf);
 
-    const quantity = paymentInf.data.bundles[0].products[0].quantity as number;
-    const email = paymentInf.data.customer.email as string;
-    
-
-    if(paymentInf.data.status === 'aprovado'){
-      updatCredtByEmailUser(email,quantity)
-    }else{
-    return res.status(400);
+    if (paymentInf.data.status === "aprovado") {
+      // Simulação de processamento bem-sucedido
+      console.log(
+        `Pagamento aprovado para ${email} com quantidade ${quantity}.`
+      );
+      res.status(200).json({
+        message: "Pagamento aprovado com sucesso.",
+        data: {
+          email,
+          quantity,
+          status: paymentInf.data.status,
+          transactionId: paymentInf.data.transactionId, // Supondo que você tenha um ID de transação
+        },
+      });
+    } else {
+      // Resposta para pagamento não aprovado
+      res.status(400).json({
+        error: "Pagamento não aprovado.",
+        details: {
+          email,
+          quantity,
+          status: paymentInf.data.status,
+        },
+      });
     }
-
-    return res.sendStatus(200)
-
-  } catch (error) {
-    console.error('Erro ao processar a notificação:', error);
-    return res.status(400).json({ error });
+  } catch (error: any) {
+    console.error("Erro ao processar a notificação:", error);
+    res.status(500).json({
+      error: "Erro interno ao processar a notificação.",
+      details: error.message, // Inclui a mensagem de erro
+    });
   }
 };
 
-
-export default responseNotificationMp;
+export default notificationAppMaxx;
