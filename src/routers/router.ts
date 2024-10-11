@@ -1,21 +1,18 @@
 import { Router } from "express";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocs from "../config/swagger";
-import { responseGemine } from "../controller/responseGemini";
-import authMiddleware from "../Auth.ts/authCredts";
-import verifyFirebaseToken from "../Auth.ts/authFirebaseJtw";
-import testeJwt from "../controller/testeJwt";
 import gatwayAppmaxx from "../controller/gatwayAppmaxx";
-import { responseGpt } from "../controller/responseGpt";
-import responseNotificationMp from "../controller/notificationAppmaxx";
+import notificationAppMaxx from "../controller/notificationAppmaxx";
+import { generateResourceController } from "../controller/generateResourceController";
+import appCheckVerification from "../middleware/appCheckVerification";
 
 const router = Router();
 
-router.post("/gemine", responseGemine);
-
-router.post("/responseresource", responseGpt);
+router.post("/generate-resource", generateResourceController);
 
 router.post("/appmaxx", gatwayAppmaxx);
+router.post("/notification", notificationAppMaxx);
+
 /**
  * @swagger
  * /appmaxx:
@@ -129,8 +126,6 @@ router.post("/appmaxx", gatwayAppmaxx);
  *                   description: Mensagem de erro.
  *                   example: "Erro ao processar a solicitação"
  */
-
-router.get("/testeJwt", verifyFirebaseToken, testeJwt);
 
 router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
