@@ -7,13 +7,15 @@ import verifyFirebaseToken from "../Auth.ts/authFirebaseJtw";
 import testeJwt from "../controller/testeJwt";
 import gatwayAppmaxx from "../controller/gatwayAppmaxx";
 import { responseGpt } from "../controller/responseGpt";
-import responseNotificationMp from "../controller/notificationAppmaxx";
+import responseNotificationAppmax from "../controller/notificationAppmaxx";
 
 const router = Router();
 
 router.post("/gemine", responseGemine);
 
 router.post("/responseresource", responseGpt);
+
+router.post('/responseNotificationAppmax', responseNotificationAppmax)
 
 router.post("/appmaxx", gatwayAppmaxx);
 /**
