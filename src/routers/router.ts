@@ -2,6 +2,7 @@ import { Router } from "express";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocs from "../config/swagger";
 import gatwayAppmaxx from "../controller/gatwayAppmaxx";
+import responseNotificationAppmax from "../controller/notificationAppmaxx";
 import notificationAppMaxx from "../controller/notificationAppmaxx";
 import { generateResourceController } from "../controller/generateResourceController";
 import appCheckVerification from "../middleware/appCheckVerification";
@@ -9,6 +10,8 @@ import appCheckVerification from "../middleware/appCheckVerification";
 const router = Router();
 
 router.post("/generate-resource", generateResourceController);
+
+router.post("/responseNotificationAppmax", responseNotificationAppmax);
 
 router.post("/appmaxx", gatwayAppmaxx);
 router.post("/notification", notificationAppMaxx);
