@@ -1,9 +1,9 @@
 import { Router } from "express";
-import swaggerUi from 'swagger-ui-express';
-import swaggerDocs from '../config/swagger';
+import swaggerUi from "swagger-ui-express";
+import swaggerDocs from "../config/swagger";
 import { responseGemine } from "../controller/responseGemini";
 import authMiddleware from "../Auth.ts/authCredts";
-import verifyFirebaseToken from "../Auth.ts/authFirebaseJtw"
+import verifyFirebaseToken from "../Auth.ts/authFirebaseJtw";
 import testeJwt from "../controller/testeJwt";
 import gatwayAppmaxx from "../controller/gatwayAppmaxx";
 import { responseGpt } from "../controller/responseGpt";
@@ -11,18 +11,17 @@ import responseNotificationMp from "../controller/notificationAppmaxx";
 
 const router = Router();
 
+router.post("/gemine", responseGemine);
 
-router.post('/gemine', responseGemine);
+router.post("/responseresource", responseGpt);
 
-router.post('/responseresource', responseGpt);
-
-router.post('/appmaxx', gatwayAppmaxx);
+router.post("/appmaxx", gatwayAppmaxx);
 /**
  * @swagger
  * /appmaxx:
  *   post:
  *     summary: Cria um pagamento e retorna os detalhes da ordem Pix.
- *     tags: 
+ *     tags:
  *       - Pagamento
  *     description: Cria uma transação de pagamento e retorna o status e os detalhes da ordem Pix.
  *     requestBody:
@@ -131,8 +130,8 @@ router.post('/appmaxx', gatwayAppmaxx);
  *                   example: "Erro ao processar a solicitação"
  */
 
-router.get('/testeJwt', verifyFirebaseToken, testeJwt);
+router.get("/testeJwt", verifyFirebaseToken, testeJwt);
 
-router.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 export default router;
