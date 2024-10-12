@@ -1,4 +1,5 @@
 import { generateOpenAICompletion } from "../helpers/openaiHelper";
+import decrementCredtByEmailUser from "../services/decrementCreditsFirebase"
 import { Request, Response } from "express";
 
 const generateResourceService = async (
@@ -45,6 +46,11 @@ const generateResourceService = async (
     `;
 
     const responseText = await generateOpenAICompletion(prompt);
+
+    if(responseText){
+     await decrementCredtByEmailUser(email)
+    }
+    
     console.log(responseText);
 
     res.status(200).json({ "Recurso gerado": responseText });

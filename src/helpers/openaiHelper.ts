@@ -1,39 +1,53 @@
 import dotenv from "dotenv";
-dotenv.config();
-import fetch from "node-fetch";
+import { openai } from "../config/configOpenAi/openAi";
 
-export const generateOpenAICompletion = async (prompt: string) => {
+dotenv.config();
+
+export const generateOpenAICompletion = async (prompt: string):Promise< string | null> => {
+
+  if (!prompt || prompt.trim().length === 0) {
+    console.error("Prompt está vazio ou inválido.");
+    throw new Error("O prompt fornecido é inválido.");
+  }
+
   try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY as string}`,
-      },
-      body: JSON.stringify({
-        model: "gpt-4o-mini",
-        messages: [
-          {
-            role: "system",
-            content: prompt,
-          },
-        ],
-        max_tokens: 3000,
-        temperature: 0.1,
-        top_p: 0.1,
-      }),
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o-mini",  
+      messages: [
+        {
+          role: "system",
+          content: prompt,
+        },
+      ],
+      max_tokens: 4000,
+      temperature: 0.1,
+      top_p: 0.1,
     });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error("Erro na resposta da API da OpenAI:", errorData);
-      throw new Error(`Erro ao chamar a API da OpenAI: ${response.statusText}`);
+    // Extraindo o conteúdo da resposta
+    const responseText = response.choices[0].message.content;
+    
+    // Verificando se há uma resposta válida
+    if (!response || !response || !response.choices || response.choices.length === 0) {
+      console.error("Resposta inválida da API da OpenAI.");
+      throw new Error("Nenhuma resposta válida foi retornada pela OpenAI.");
     }
 
-    const data = await response.json();
-    return data.choices[0].message.content;
-  } catch (error) {
-    console.error("Erro ao chamar a API da OpenAI: ", error);
+    console.log(responseText)
+    return responseText;
+
+  } catch (error:any) {
+    if (error.response) {
+      // Erro na resposta da API
+      console.error("Erro na resposta da API OpenAI:", error.response.data);
+    } else if (error.request) {
+      // Erro na requisição para a API
+      console.error("Erro na requisição à API OpenAI:", error.request);
+    } else {
+      // Outro tipo de erro
+      console.error("Erro ao chamar a API da OpenAI:", error.message);
+    }
     throw new Error("Erro ao gerar o recurso com a OpenAI.");
   }
-};
+  };
+
