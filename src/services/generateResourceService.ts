@@ -13,7 +13,6 @@ const generateResourceService = async (
       candidateName,
       cargo,
       email,
-      userId,
       inscricao,
       numeroQuestao,
       questionContent,
