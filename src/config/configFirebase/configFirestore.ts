@@ -1,5 +1,5 @@
 import adminfirebase from "firebase-admin";
-const serviceAccount = require("../../../firebase.json");
+const serviceAccount = require("../../../recurso.json");
 import dotenv from "dotenv";
 
 dotenv.config();

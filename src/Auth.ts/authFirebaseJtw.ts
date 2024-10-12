@@ -1,26 +1,34 @@
-import { Request, Response, NextFunction } from "express";
+import { User } from "mercadopago";
 import { authFirebase } from "../config/configFirebase/configFirestore";
+import { Request, Response, NextFunction } from "express";
 
-const verifyFirebaseToken = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<any> => {
-  const authHeader = req.headers.authorization;
-
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res.status(401).send("Token não fornecido ou inválido.");
-  }
-
-  const token = authHeader.split(" ")[1];
-
+const verifyFirebaseToken = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   try {
-    const decodedToken = await authFirebase.verifyIdToken(token);
-    req.user = decodedToken || {};
+    // Obtém o token do cabeçalho de autorização (formato "Bearer <token>")
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({ error: "Token não fornecido ou inválido." });
+    }
+
+    // Extrai o token da string "Bearer <token>"
+    const idToken = authHeader.split(" ")[1];
+
+    // Verifica o token de ID fornecido pelo cliente
+    const decodedToken = await authFirebase.verifyIdToken(idToken);
+
+    // Verifica se o token tem um UID válido
+    if (!decodedToken.uid) {
+      return res.status(403).json({ error: "Token inválido." });
+    }
+
+    console.log("Token verificado com sucesso, UID do usuário:", decodedToken.uid);
+
+    // Continua para o próximo middleware ou rota
     next();
   } catch (error) {
-    console.error("Erro na verificação do token Firebase:", error);
-    res.status(403).send("Falha na autenticação.");
+    console.error("Erro ao verificar o token:", error);
+    return res.status(403).json({ error: "Falha na autenticação. Token inválido ou expirado." });
   }
 };
 
