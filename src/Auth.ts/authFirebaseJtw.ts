@@ -11,8 +11,8 @@ const verifyFirebaseToken = async (req: Request, res: Response, next: NextFuncti
       return res.status(401).json({ error: "Token não fornecido ou inválido." });
     }
 
-    // Extrai o token da string "Bearer <token>"
-    const idToken = authHeader.split(" ")[1];
+    // Extrai o token da string "Bearer <token>" 
+    const idToken = authHeader.split(" ")[1];   
 
     // Verifica o token de ID fornecido pelo cliente
     const decodedToken = await authFirebase.verifyIdToken(idToken);

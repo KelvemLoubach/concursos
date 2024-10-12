@@ -11,12 +11,94 @@ import appCheckVerification from "../middleware/appCheckVerification";
 const router = Router();
 
 router.post("/generate-resource", verifyFirebaseToken, generateResourceController);
+/**
+ * @swagger
+ * /generate-resource:
+ *   post:
+ *     summary: Cria um recurso com gpt
+ *     tags:
+ *       - Recurso
+ *     description: Criar um recurso com gpt.
+ *     security:
+ *     - bearerAuth: [] 
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               bancaConcurso:
+ *                 type: string
+ *                 description: Banca do concurso
+ *                 example: "Selecon"
+ *               tipoRecurso:
+ *                 type: string
+ *                 description: Anular ou mudar gabarito.
+ *                 example: "Anular"
+ *               candidateName:
+ *                 type: string
+ *                 description: Nome do candidato.
+ *                 example: "kelvem"
+ *               cargo:
+ *                 type: string
+ *                 description: Qual cargo .
+ *                 example: "Policia"
+ *               email:
+ *                 type: string
+ *                 description: E-mail do canditado.
+ *                 example: "jailsondionisio@hotmail.com"
+ *               inscricao:
+ *                 type: number
+ *                 description: Número da inscrição do canditado
+ *                 example: 65465
+ *               numeroQuestao:
+ *                 type: number
+ *                 description: Qual o número da questão .
+ *                 example: 25
+ *               questionContent:
+ *                 type: string
+ *                 description: Questão para gerar o recuso
+ *                 example: Qual a capital do Brasil
+ *               gabaritoInformado:
+ *                 type: string
+ *                 description: Gabarito da banca.
+ *                 example: "D"
+ *               gabaritoCandidato:
+ *                 type: string
+ *                 description: Gabarito considerado correto pelo canditado.
+ *                 example: "C"
+ *     responses:
+ *       200:
+ *         description: Recurso gerado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 responseText:
+ *                   type: string
+ *                   description: A resposta gerada 
+ *                 text:
+ *                   type: string
+ *                   description: Recurso gerado.
+ *                   example: "Recurso gerado"
+ *       500:
+ *         description: Erro ao processar a solicitação
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   description: Mensagem de erro.
+ *                   example: "Erro ao Erro ao gerar o recurso."
+ */
 
 router.post("/responseNotificationAppmax", responseNotificationAppmax);
 
 router.post("/appmaxx", gatwayAppmaxx);
-router.post("/notification", notificationAppMaxx);
-
 /**
  * @swagger
  * /appmaxx:
@@ -25,6 +107,8 @@ router.post("/notification", notificationAppMaxx);
  *     tags:
  *       - Pagamento
  *     description: Cria uma transação de pagamento e retorna o status e os detalhes da ordem Pix.
+ *     security:
+ *      - bearerAuth: [] 
  *     requestBody:
  *       required: true
  *       content:
@@ -130,6 +214,8 @@ router.post("/notification", notificationAppMaxx);
  *                   description: Mensagem de erro.
  *                   example: "Erro ao processar a solicitação"
  */
+
+router.post("/notification", notificationAppMaxx);
 
 router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 

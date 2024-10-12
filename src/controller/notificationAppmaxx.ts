@@ -29,7 +29,7 @@ const responseNotificationAppmax = async (
     // Verificando se todos os campos estão preenchidos corretamente
     if (
       !quantity ||
-      !email ||
+      !email || 
       typeof email !== "string" ||
       typeof quantity !== "number"
     ) {
