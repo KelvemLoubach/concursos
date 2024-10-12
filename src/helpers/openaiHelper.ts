@@ -3,7 +3,7 @@ import { openai } from "../config/configOpenAi/openAi";
 
 dotenv.config();
 
-export const generateOpenAICompletion = async (prompt: string) => {
+export const generateOpenAICompletion = async (prompt: string):Promise< string | null> => {
 
   if (!prompt || prompt.trim().length === 0) {
     console.error("Prompt está vazio ou inválido.");
