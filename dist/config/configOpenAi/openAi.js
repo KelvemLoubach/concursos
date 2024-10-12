@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.openai = void 0;
 const dotenv_1 = __importDefault(require("dotenv"));
+const openai_1 = require("openai");
 dotenv_1.default.config();
-const openai_1 = __importDefault(require("openai"));
-exports.openai = new openai_1.default({
+exports.openai = new openai_1.OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
